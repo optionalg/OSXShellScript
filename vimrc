@@ -153,6 +153,22 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType java set omnifunc=javacomplete#Complet
 
+:inoremap ( ()<ESC>i 
+:inoremap ) <c-r>=ClosePair(')')<CR> 
+:inoremap { {}<ESC>i 
+:inoremap } <c-r>=ClosePair('}')<CR> 
+:inoremap [ []<ESC>i 
+:inoremap ] <c-r>=ClosePair(']')<CR> 
+:inoremap < <><ESC>i 
+:inoremap > <c-r>=ClosePair('>')<CR> 
+
+function ClosePair(char) 
+    if getline('.')[col('.') - 1] == a:char 
+        return "\<Right>" 
+    else 
+        return a:char 
+    endif 
+endf 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文本格式和排版
